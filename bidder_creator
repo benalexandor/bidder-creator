@@ -1,0 +1,206 @@
+import requests
+import json
+import pandas as pd
+
+bidders_list = list()
+
+bidders = [
+
+
+]
+
+us_testing_credentials = {
+
+            "tv_plus_mobile":
+            {
+                "bidders_id": "20a66321-39af-4a9f-91a0-3d4653f89349",
+                "tag_id": "456da4f2-bbf2-45ed-9438-3abd3f1480b8",
+                "access_key": "c1d7c3f14e7e4dc49c455ab173aea369",
+                "secret_key": "672bd53295064c58af1935db012a8b62",
+            },
+
+            "samsung_free":
+            {
+                "bidders_id": "20a66321-39af-4a9f-91a0-3d4653f89349",
+                "tag_id": "456da4f2-bbf2-45ed-9438-3abd3f1480b8",
+                "access_key": "c1d7c3f14e7e4dc49c455ab173aea369",
+                "secret_key": "672bd53295064c58af1935db012a8b62",
+            },
+
+            "tv_plus_family_hub":
+            {
+                "bidders_id": "cdad9dcb-f1f4-423d-8229-1350d1ab7834",
+                "tag_id": "0c9664b1-bbe5-4953-85aa-31bd7c71e7ed",
+                "access_key": "1259e90dd5274af5ab67098be0a01a8c",
+                "secret_key": "c5cf72c227b349d1b750691f555d4e33",
+            },
+
+            }
+
+us_prod_credentials = {
+
+            "tv_plus_mobile":
+            {
+                "bidders_id": "d99c5a63-475f-40b5-83d4-52e6e97e734d",
+                "tag_id": "2c597076-6c7b-418e-a494-ad70c9dad868",
+                "access_key": "f4c84d51648a455ab01e84fc215851d0",
+                "secret_key": "34073cd5c1e14ad9837f72b5a7df0820",
+            },
+
+            "samsung_free":
+            {
+                "bidders_id": "dd795f50-9245-4037-b522-8d0e1ce3faef",
+                "tag_id": "408389ab-4519-47b1-afeb-a295a558b38f",
+                "access_key": "df2b6b9e9c6e4ebcbf886a5866ac94c3",
+                "secret_key": "38b07558df864b67a63fc4233936cb41",
+            },
+
+            "tv_plus_family_hub":
+            {
+                "bidders_id": "c3917572-4377-4a0b-b592-4b3966caf1c9",
+                "tag_id": "55507037-737f-4453-a380-bb23160266fe",
+                "access_key": "8ef8e5f5ea0d4bd99d96f228093e21cc",
+                "secret_key": "87a20d389f344338bb54b535526c14eb",
+            },
+
+
+}
+
+ca_testing_credentials = {
+
+    "tv_plus_mobile":
+        {
+            "bidders_id": "f3b54a24-d441-4518-b19b-f35c4de422d6",
+            "tag_id": "2a2a832b-3b17-44f0-b165-f9c845dfb7bc",
+            "access_key": "832fa90260074fe5877d6b65f8f7161c",
+            "secret_key": "ad96f15e34704663a44a87c69c3ccc3e",
+        },
+
+    "samsung_free":
+        {
+            "bidders_id": "f3b54a24-d441-4518-b19b-f35c4de422d6",
+            "tag_id": "2a2a832b-3b17-44f0-b165-f9c845dfb7bc",
+            "access_key": "832fa90260074fe5877d6b65f8f7161c",
+            "secret_key": "ad96f15e34704663a44a87c69c3ccc3e",
+        },
+
+
+}
+
+ca_prod_credentials = {
+
+    "tv_plus_mobile":
+        {
+            "bidders_id": "fdddf946-191f-431c-8c3f-9fff893f2c70",
+            "tag_id": "c1645317-766a-4666-bcd8-8656d359b57a",
+            "access_key": "b6eae3805a54471e89583f53bbfbcd9c",
+            "secret_key": "b77b5b2936e44fa79f52e2d6fc3b0af0",
+        },
+
+    "samsung_free":
+        {
+            "bidders_id": "cf386b52-f58d-403b-8c38-9cd54c88522e",
+            "tag_id": "fda18044-48d6-4a8e-8555-62db2b84bba4",
+            "access_key": "d80754867cfd4c73ab3dc711a4d41ece",
+            "secret_key": "2d42031bded74d1897527ea6b60ecb2f",
+        },
+
+
+}
+
+##include credentials for spanish (US) and french (CA) bidderss
+
+
+accounts_meta = {
+    "na": {
+        "token": "5fb4d0f23b544c6d5fde490d396979bdb9d554ed5c49fe831b01ba449717d4322f2c5f65155f201972731a043f113f470f7ff28a79e60834771426f77f720ccfb7e3dc47cb4837f419d1b5935886167d0a0a7ed31e50615b8565d490dd0378febbb6f072f11b4bceb9f09b7d373efe55324d1d99918d5e3b1303fd24f60870ce",
+        "update": {"Active": 2,
+                   "HeaderbiddersEndpointTimeout": 1850,
+                   "HeaderbiddersDedup": True,
+                   "HeaderbiddersDedupAdomain": True,
+                   "HeaderbiddersDedupCategory": True,
+                   "BypassDedupByDurationAsSeparation": 2,
+                   "BypassDedupDuration": 30,
+                   "BypassIabCatDedup": 2,
+                   "HeaderbiddersMimeTypes": "video/mp4",
+                   "RemoveContentDistribNameFromEndpointRequest": 2,
+                   "RemoveContentKeywordsFromEndpointRequest": 2,
+                   "RemoveContentNetworkFromEndpointRequest": 2,
+                   "RemoveContentSeriesFromEndpointRequest": 2,
+                   "RemoveContentTitleFromEndpointRequest": 2
+                   }
+    },
+
+
+
+    "kr": {
+        "token": "796e3281ae2f2ae933ae21c967919dc845f11cc3490a2c13f867d3a633375bc9b98fc1c4e603a198dd4448085570e5992b86f860c514a3997a9ad37414139cb5127d1f64b8eb56715f0d9e2066c9388db5418054b394130aa751fb1ccb46f249ae86db8767cfe5733eb15c9ea305bbcac2ade78d751b99f29c7f12e0d499c76a",
+        "update": {"Active": 2,
+                   "HeaderbiddersEndpointTimeout": 1850,
+                   "HeaderbiddersDedup": True,
+                   "HeaderbiddersDedupAdomain": False,
+                   "HeaderbiddersDedupCategory": False,
+                   "HeaderbiddersMimeTypes": "video/mp4",
+                   "RemoveContentDistribNameFromEndpointRequest": 2,
+                   "RemoveContentKeywordsFromEndpointRequest": 2,
+                   "RemoveContentNetworkFromEndpointRequest": 2,
+                   "RemoveContentSeriesFromEndpointRequest": 2,
+                   "RemoveContentTitleFromEndpointRequest": 2
+                   }
+    }
+
+
+}
+
+
+for bidders in bidders_list:
+    account_name = bidders["account"]
+    bidders_type = bidders["type"]
+    account_meta = accounts_meta[account_name]
+
+    dynamic_api_url = ("https://api.getpublica.com/v1/public/bidderss?token=" + account_meta["token"])
+
+    update = account_meta["update"]
+    update["name"] = bidders["bidders_name"]
+
+    # Get bidders app store info
+    bidders_app_store_info = app_store[bidders_type]
+    bidders_app_store_type = bidders_app_store_info['type']
+    bidders_app_store_url= bidders_app_store_info['url']
+
+    # Get bidders app override info
+    bidders_app_domain_info = app_store[bidders_type]
+    bidders_app_domain_type = bidders_app_store_info['type2']
+    bidders_app_domain_url = bidders_app_store_info['url2']
+
+    # Get bidders account info
+    bidders_account_info = accounts_meta[account_name]
+    app_store_url = {}
+    app_store_url[bidders_app_store_type] = bidders_app_store_url
+    bidders_account_info['update']['AppStoreURL'] = app_store_url
+    bidders_account_info['update']['AppDomainOverride'] = "{" + bidders_app_domain_type + ":" + " " + bidders_app_domain_url + "}"
+
+    content_rating = bidders["rating"]
+    bidders_account_info['update']['ContentRatingOverride'] = content_rating
+
+    post_bid_bidders_name = bidders["post_bid_bidders_name"]
+    bidders_account_info['update']["ContentbiddersPostBidOverride"] = post_bid_bidders_name
+
+    prod_qual_override = bidders["Prodqual_Override"]
+    bidders_account_info['update']["ContentProdqualOverride"] = prod_qual_override
+
+    bidders_labels = bidders["biddersLabels"]
+    bidders_account_info['update']["biddersLabelNames"] = bidders_labels
+
+    response = requests.post(dynamic_api_url, json=update)
+    response_dict = response.json()
+    bidders_info = {
+        "id": response_dict["ID"],
+        "name": response_dict["name"]
+    }
+    bidders_list.append(bidders_info)
+    # Print output
+    pretty = json.dumps(response_dict, indent=4)
+    print(pretty)
+
+pd.DataFrame(bidders_list).to_csv(r'/Users/b.alexandor/Desktop/bidders_list.csv', index=False)
